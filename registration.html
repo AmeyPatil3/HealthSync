@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthSync - Registration</title>
+    <link rel="stylesheet" href="./style1.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@500&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Header / Navbar -->
+    <header>
+        <nav>
+            <div class="logo"><h3>Healthsync</h3></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="./contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Registration Section -->
+    <section class="registration-section">
+        <div class="registration-container">
+            <h1>Register</h1>
+
+            <!-- User Type Selection -->
+            <form id="user-type-form" action="register.php" method="POST">
+                <label for="user-type">Register As:</label>
+                <select id="user-type" name="user-type" onchange="toggleUserType()">
+                    <option value="normal">Normal User</option>
+                    <option value="doctor">Doctor</option>
+                </select>
+            </form>
+
+            <!-- Normal User Form -->
+            <form id="normal-user-form" class="user-form" action="register.php" method="POST" style="display: block;">
+                <h2>Normal User Registration</h2>
+                <label for="username">UsernID</label>
+                <input type="text" id="username" name="username" required readonly>
+
+                <label for="first-name">First Name</label>
+                <input type="text" id="first-name" name="first-name" required>
+
+                <label for="middle-name">Middle Name</label>
+                <input type="text" id="middle-name" name="middle-name">
+
+                <label for="last-name">Last Name</label>
+                <input type="text" id="last-name" name="last-name" required>
+
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" name="dob" required>
+
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+
+                <label for="mobile">Mobile Number</label>
+                <input type="tel" id="mobile" name="mobile" required>
+
+                <label for="address">Address</label>
+                <input type="text" id="street" name="street" placeholder="Street" required>
+                <input type="text" id="city" name="city" placeholder="City" required>
+                <input type="text" id="state" name="state" placeholder="State" required>
+                <input type="text" id="zipcode" name="zipcode" placeholder="Zip Code" required>
+
+                <label for="aadhaar">Aadhaar Card Number</label>
+                <input type="text" id="aadhaar" name="aadhaar" required>
+
+                <label for="password">Create Password</label>
+                <input type="password" id="password" name="password" required>
+
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+
+                <button type="submit">Register</button>
+            </form>
+
+            <!-- Doctor Form -->
+            <form id="doctor-form" class="user-form" action="register.php" method="POST" style="display: none;">
+                <h2>Doctor Registration</h2>
+
+                <label for="doc-first-name">First Name</label>
+                <input type="text" id="doc-first-name" name="first-name" required>
+
+                <label for="doc-middle-name">Middle Name</label>
+                <input type="text" id="doc-middle-name" name="middle-name">
+
+                <label for="doc-last-name">Last Name</label>
+                <input type="text" id="doc-last-name" name="last-name" required>
+
+                <label for="doc-mobile">Mobile Number</label>
+                <input type="tel" id="doc-mobile" name="mobile" required>
+
+                <label for="nmr-id">NMR ID</label>
+                <input type="text" id="nmr-id" name="nmr-id" required>
+
+                <label for="doc-aadhaar">Aadhaar Card Number</label>
+                <input type="text" id="doc-aadhaar" name="aadhaar" required>
+
+                <label for="doc-password">Create Password</label>
+                <input type="password" id="doc-password" name="password" required>
+
+                <label for="doc-confirm-password">Confirm Password</label>
+                <input type="password" id="doc-confirm-password" name="confirm-password" required>
+
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">ERMIAS</div>
+            <p>&copy; 2024 HealthSync</p>
+            <ul class="footer-links">
+                <li><a href="#">Git Hub</a></li>
+
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+
+        function toggleUserType() {
+            const userType = document.getElementById('user-type').value;
+            const normalUserForm = document.getElementById('normal-user-form');
+            const doctorForm = document.getElementById('doctor-form');
+
+            if (userType === 'doctor') {
+                normalUserForm.style.display = 'none';
+                doctorForm.style.display = 'block';
+            } else {
+                normalUserForm.style.display = 'block';
+                doctorForm.style.display = 'none';
+            }
+        }
+        function generateUniqueId() {
+            let uniqueId;
+            do {
+                uniqueId = Math.floor(Math.random() * 1000000000000); // Generate a random number
+            } while (uniqueId.toString().length !== 12); // Ensure it's 12 digits
+            return uniqueId;
+        }
+
+        // Set the unique ID in the username field when the page loads
+        window.onload = function () {
+            const uniqueId = generateUniqueId();
+            document.getElementById('username').value = uniqueId;
+        };
+        document.getElementById('normal-user-form').onsubmit = function() {
+        var password = document.getElementById('password').value;
+        var confirmPassword = document.getElementById('confirm-password').value;
+        if (password != confirmPassword) {
+            alert('Passwords do not match!');
+            return false;
+        }
+        return true;
+    };
+
+    document.getElementById('doctor-form').onsubmit = function() {
+        var password = document.getElementById('doc-password').value;
+        var confirmPassword = document.getElementById('doc-confirm-password').value;
+        if (password != confirmPassword) {
+            alert('Passwords do not match!');
+            return false;
+        }
+        return true;
+    };
+    </script>
+
+</body>
+
+</html>

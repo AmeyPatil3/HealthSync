@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HealthSync - Login</title>
+  <link rel="stylesheet" href="./style1.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Header / Navbar -->
+  <header>
+    <nav>
+      <div class="logo"><h3>HealthSync</h3></div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="./about.html">About</a></li>
+        <li><a href="./contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Login Section -->
+  <section class="login-section">
+    <div class="login-container">
+      <h2>Login to HealthSync</h2>
+      <form action="dashboard.html" method="POST">
+        <div class="user-type">
+          <label for="user-type">Login as:</label>
+          <select id="user-type" name="user_type">
+            <option value="doctor">Doctor</option>
+            <option value="normal">Normal User</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" placeholder="HealthSync Id" name="username" required>
+        </div>
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Enter Password" name="password" required>
+        </div>
+        <button type="submit" class="login-btn">Login</button>
+      </form>
+      <div class="login-footer">
+        <p>Don't have an account? <a href="./registration.html">Register here</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">HealthSync</div>
+      <p>&copy; 2024 HealthSync</p>
+      <ul class="footer-links">
+        <li><a href="#">Git Hub</a></li>
+       
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>

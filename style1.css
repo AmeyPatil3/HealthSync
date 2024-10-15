@@ -1,0 +1,466 @@
+/* Styles for Login Page */
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: #f0f7fb;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Header */
+  header {
+    background-color: #2a3f54;
+    padding: 20px;
+    color: #fff;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+  }
+  
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+  }
+  
+  .nav-links li {
+    margin: 0 15px;
+  }
+  
+  .nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s;
+  }
+  
+  .nav-links a:hover {
+    color: #00c2cb;
+  }
+  
+  /* Login Section */
+  .login-section {
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding-top: 80px;
+  }
+  
+  .login-container {
+    background-color: #fff;
+    padding: 40px 50px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  .login-container h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .input-group {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  .input-group label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #333;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .user-type {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  .user-type label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  
+  .user-type select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .login-btn {
+    background-color: #00c2cb;
+    color: #fff;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    transition: background-color 0.3s;
+  }
+  
+  .login-btn:hover {
+    background-color: #009a9c;
+  }
+  
+  .login-footer {
+    margin-top: 20px;
+  }
+  
+  .login-footer p {
+    font-size: 14px;
+  }
+  
+  .login-footer a {
+    color: #00c2cb;
+    text-decoration: none;
+  }
+  
+  .login-footer a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Footer */
+  footer {
+    background-color: #2a3f54;
+    padding: 30px 20px;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .footer-logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .footer-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  .footer-links li {
+    margin: 0 10px;
+  }
+  
+  .footer-links a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  .footer-links a:hover {
+    color: #00c2cb;
+  }
+  
+  @media (max-width: 768px) {
+    .login-container {
+      padding: 30px;
+    }
+  
+    .login-btn {
+      padding: 12px 25px;
+    }
+  }
+  /* Styles for About Page */
+.about-section {
+    background-color: #f0f7fb;
+    padding: 60px 20px;
+    margin-top: 80px;
+  }
+  
+  .about-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .about-container h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 32px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .about-container p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .about-container h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #2a3f54;
+  }
+  
+  .about-container ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .about-container ul li {
+    font-size: 18px;
+    color: #555;
+    padding: 5px 0;
+  }
+  
+  .about-container ul li ul {
+    margin-top: 5px;
+    margin-left: 20px;
+  }
+  
+  .about-container ul li ul li {
+    list-style-type: disc;
+  }
+  
+  .about-container ul li ul li {
+    margin-left: 15px;
+    padding: 5px 0;
+  }
+  
+  /* General Footer and Header styles are reused from the previous template */
+  /* Styles for Registration Page */
+.registration-section {
+    background-color: #f0f7fb;
+    padding: 60px 20px;
+    margin-top: 80px;
+  }
+  
+  .registration-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .registration-container h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 32px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .registration-container h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #2a3f54;
+  }
+  
+  .user-form {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+  }
+  
+  input[type="text"], input[type="date"], input[type="password"], input[type="tel"], select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  button {
+    background-color: #3a7bd5;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #357ae8;
+  }
+  
+  /* General Footer and Header styles are reused from the previous template */
+  /* Contact Us Section */
+.contact-us-section {
+  background-color: #f0f7fb;
+  padding: 60px 20px;
+  margin-top: 90px;
+  text-align: center;
+}
+
+.contact-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.contact-container h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: #2a3f54;
+}
+
+.contact-container p {
+  font-family: 'Lato', sans-serif;
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+.team-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.team-member {
+  width: 250px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.member-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.team-member h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.team-member p {
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.team-member a {
+  color: #357ae8;
+}
+
+.social-icons {
+  margin-top: 15px;
+}
+
+.social-icons a {
+  color: #3a7bd5;
+  font-size: 24px;
+  margin: 0 10px;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #2a3f54;
+}
+
+/* General Footer and Header styles are reused from previous template */
+/* Feedback Section */
+.feedback-container {
+    margin-top: 50px;
+    padding: 40px;
+    background-color: #f0f7fb;
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+  .feedback-container h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #2a3f54;
+  }
+  
+  .feedback-form {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  
+  .form-group input, 
+  .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  textarea {
+    resize: vertical;
+  }
+  
+  .submit-btn {
+    background-color: #357ae8;
+    color: #fff;
+    padding: 10px 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-btn:hover {
+    background-color: #285aa8;
+  }
+  .generate{
+    margin-bottom: 20px;
+  }

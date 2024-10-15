@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="">
+  <style>
+    /* General Layout */
+    body {
+      font-family: 'Lato', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    /* Header Styling */
+    .header {
+      background-color: #2C3E50;
+      padding: 15px 0;
+      text-align: center;
+      border-bottom: 2px solid #2980B9;
+    }
+
+    .header h1 {
+      font-family: 'Montserrat', sans-serif;
+      color: #fff;
+      font-size: 36px;
+      margin: 0;
+    }
+
+    .header nav {
+      margin-top: 10px;
+    }
+
+    .header nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      color: #ecf0f1;
+      font-size: 18px;
+    }
+
+    .header nav a:hover {
+      color: #d1ecf1;
+    }
+
+    /* Footer Styling */
+    .footer {
+      background-color: #2C3E50;
+      padding: 10px 0;
+      text-align: center;
+      color: #ecf0f1;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .footer a {
+      color: #ecf0f1;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    .footer a:hover {
+      color: #d1ecf1;
+    }
+
+    /* Dashboard Layout */
+    .dashboard-container {
+      width: 90%;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      height: 90vh;
+      overflow-y: scroll;
+    }
+
+    h1 {
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+      color: #2a3f54;
+    }
+
+    /* Tab Navigation */
+    .tab-menu {
+      display: flex;
+      justify-content: space-around;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 10px;
+    }
+
+    .tab-menu button {
+      background: none;
+      border: none;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 18px;
+      cursor: pointer;
+      padding: 10px 20px;
+      color: #2980B9;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .tab-menu button:hover, .tab-menu button.active {
+      background-color: #f4f4f4;
+      color: #2C3E50;
+    }
+
+    /* Tab Content */
+    .tab-content {
+      display: none;
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* General Info Styling */
+    .search-bar {
+      margin-bottom: 20px;
+    }
+
+    .info-container {
+      margin: 20px 0;
+      border: 1px solid #ddd;
+      padding: 15px;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .info-block {
+      margin: 15px 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .info-block input, .info-block select, .info-block textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin: 5px 0;
+    }
+
+    .info-block button {
+      margin-top: 10px;
+    }
+
+    .read-only {
+      background-color: #f4f4f4;
+      pointer-events: none;
+    }
+
+    .add-btn {
+      background-color: #2980B9;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      display: block;
+      margin: 20px 0;
+    }
+
+    .add-btn:hover {
+      background-color: #2C3E50;
+    }
+ /* Profile Section */
+    .profile-photo {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .profile-photo img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 2px solid #2980B9;
+    }
+    .profile-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      font-size: 16px;
+      color: #2a3f54;
+    }
+
+    .profile-details div {
+      background-color: #f9f9f9;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .profile-details div h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .profile-details div p {
+      margin: 0;
+      font-size: 14px;
+    }
+    /* Edit Profile Button */
+    #edit-profile-btn {
+      display: block;
+      margin: 20px auto;
+      padding: 12px 24px;
+      background-color: #2980B9;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      font-family: 'Montserrat', sans-serif;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    #edit-profile-btn:hover {
+      background-color: #2C3E50;
+      transform: scale(1.05);
+    }
+    /* Edit Profile Form */
+    .edit-profile-form {
+      display: none;
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .edit-profile-form input, 
+    .edit-profile-form select {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .edit-profile-form button {
+      background-color: #2980B9;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      display: block;
+      margin: 20px auto;
+    }
+
+    .edit-profile-form button:hover {
+      background-color: #2C3E50;
+    }
+    
+    .edit-profile-form label {
+      margin-top: 10px;
+      font-weight: bold;
+      display: block;
+    }
+
+
+    .info-block {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        .preview {
+            margin-top: 10px;
+            max-width: 300px;
+            display: block;
+        }
+        .pdf-preview {
+            display: block;
+            color: blue;
+            text-decoration: underline;
+        }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <h1>HealthSync</h1>
+    <nav>
+      <a id="logoutBtn" href="#">Logout</a>
+    </nav>
+  </div>
+
+  <div class="dashboard-container">
+    <h1>Dashboard</h1>
+
+    <!-- Tab Menu -->
+    <div class="tab-menu">
+      <button class="tab-button active" data-tab="profile">Profile</button>
+      <button class="tab-button" data-tab="allergic-info">Allergic Info</button>
+      <button class="tab-button" data-tab="medical-records">Medical Records</button>
+      <button class="tab-button" data-tab="prescriptions">Prescriptions</button>
+    </div>
+
+    <!-- Profile Tab Content -->
+    <div id="profile" class="tab-content active">
+    <!-- Profile Section -->
+    <div class="profile-photo">
+      <img id="profile-photo" src="https://via.placeholder.com/150" alt="Profile Photo">
+    </div>
+    <div class="profile-details">
+      <div>
+        <h4>Username</h4>
+        <p id="profile-username">johndoe123</p>
+      </div>
+      <div>
+        <h4>Name</h4>
+        <p id="profile-name">John Doe</p>
+      </div>
+      <div>
+        <h4>Date of Birth</h4>
+        <p id="profile-dob">01/01/1990</p>
+      </div>
+      <div>
+        <h4>Gender</h4>
+        <p id="profile-gender">Male</p>
+      </div>
+      <div>
+        <h4>Blood Group</h4>
+        <p id="profile-blood">A+</p>
+      </div>
+      <div>
+        <h4>Mobile Number</h4>
+        <p id="profile-mobile">+1 234 567 890</p>
+      </div>
+      <div>
+        <h4>Address</h4>
+        <p id="profile-address">123 Main St, City, Country</p>
+      </div>
+      <div>
+        <h4>Aadhar Number</h4>
+        <p id="profile-aadhar">1234-5678-9101</p>
+      </div>
+      <div>
+        <h4>Insurance Number</h4>
+        <p id="profile-insurance">1234-5678-9101</p>
+      </div>
+      <div>
+        <h4>Guardian Name</h4>
+        <p id="profile-guardian">Jane Doe</p>
+      </div>
+      <div>
+        <h4>Guardian Mobile Number</h4>
+        <p id="profile-Gmobile">+1 234 567 890</p>
+      </div>
+      <div>
+        <h4>Emergency Contact</h4>
+        <p id="profile-emergency">+1 987 654 321</p>
+      </div>
+    </div>
+    <button id="edit-profile-btn">Edit Profile</button>
+    </div>
+
+    <!-- Edit Profile Form -->
+     <form>
+    <div id="edit-profile-form" class="edit-profile-form">
+      <h3>Edit Profile</h3>
+      <label for="edit-photo">Profile Photo:</label>
+      <input type="file" id="edit-photo">
+      <label for="edit-name">Name:</label>
+      <input type="text" id="edit-name" value="John Doe">
+      <label for="edit-username">Username:</label>
+      <input type="text" id="edit-username" value="johndoe123">
+      <label for="edit-dob">Date of Birth:</label>
+      <input type="date" id="edit-dob" value="1990-01-01">
+      <label for="edit-gender">Gender:</label>
+      <select id="edit-gender">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+      <label for="edit-blood">Blood Group</label>
+      <select id="edit-blood">
+        <option value="A+">A+</option>
+        <option value="A-">A-</option>
+        <option value="B+">B+</option>
+        <option value="B-">B-</option>
+        <option value="AB+">AB+</option>
+        <option value="AB-">AB-</option>
+        <option value="O+">O+</option>
+        <option value="O-">O-</option>
+      </select>
+
+      <label for="edit-mobile">Mobile Number:</label>
+      <input type="text" id="edit-mobile" value="+1 234 567 890">
+      <label for="edit-address">Address:</label>
+      <input type="text" id="edit-address" value="123 Main St, City, Country">
+      <label for="edit-aadhar">Aadhar Number:</label>
+      <input type="text" id="edit-aadhar" value="1234-5678-9101">
+      <label for="edit-insurance">Insurance Number:</label>
+      <input type="text" id="edit-Insurance" value="1234-5678-9101">
+      <label for="edit-guardian">Guardian Name:</label>
+      <input type="text" id="edit-guardian" value="Jane Doe">
+      <label for="edit-Gmobile">Guardian Mobile Number:</label>
+      <input type="text" id="edit-Gmobile" value="+1 234 567 890">
+      <label for="edit-emergency">Emergency Contact:</label>
+      <input type="text" id="edit-emergency" value="+1 987 654 321">
+      <button id="save-profile-btn">Save</button>
+    </div>
+  </form>
+    <!-- Allergic Info Tab Content -->
+    <div id="allergic-info" class="tab-content">
+      <input type="text" class="search-bar" id="searchAllergies" placeholder="Search allergies by severity (Safe/Moderate/Critical)...">
+      <button class="add-btn" onclick="addAllergy()">Add Allergy</button>
+      <div class="info-container" id="allergy-container">
+        <!-- Allergy items will be dynamically added here -->
+      </div>
+    </div>
+
+    <!-- Medical Records Tab Content -->
+    <div id="medical-records" class="tab-content">
+      <button class="add-btn" onclick="addMedicalRecord()">Add Medical Record</button>
+      <div class="info-container" id="medical-record-container">
+        <!-- Medical records will be dynamically added here -->
+      </div>
+    </div>
+
+    <!-- Prescriptions Tab Content -->
+    <div id="prescriptions" class="tab-content">
+      <button class="add-btn" onclick="addPrescription()">Add Prescription</button>
+      <div class="info-container" id="prescription-container">
+        <!-- Prescriptions will be dynamically added here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>© 2024 HealthSync</p>
+    <p><a href="./contact.html">Contact Us</a></p>
+  </div>
+
+  <!-- JavaScript for Tab Switching and Dynamic Content -->
+  <script>
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    // Handle Tab Switching
+    tabButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+        button.classList.add('active');
+        document.getElementById(button.getAttribute('data-tab')).classList.add('active');
+      });
+    });
+
+    // Allergic Info Functionality
+    function addAllergy() {
+      const container = document.getElementById('allergy-container');
+      const newAllergy = document.createElement('div');
+      newAllergy.className = 'info-block';
+
+      newAllergy.innerHTML = `
+        <label>Allergy:</label>
+        <input type="text">
+        <label>Description:</label>
+        <textarea rows="2"></textarea>
+        <label>Severity:</label>
+        <select>
+          <option value="Safe">Safe</option>
+          <option value="Moderate">Moderate</option>
+          <option value="Critical">Critical</option>
+        </select>
+        <button class="save-btn" onclick="saveAllergy(this)">Save</button>
+        <button onclick="removeAllergy(this)">Remove</button>
+      `;
+      container.appendChild(newAllergy);
+    }
+
+    function saveAllergy(btn) {
+      const inputs = btn.parentElement.querySelectorAll('input, select, textarea');
+      inputs.forEach(input => {
+        input.setAttribute('readonly', true);
+        input.classList.add('read-only');
+      });
+      btn.remove(); // Remove save button
+      // Add edit button back after saving
+      const editButton = document.createElement('button');
+      editButton.innerText = 'Edit';
+      editButton.className = 'edit-btn';
+      editButton.onclick = function() { editAllergy(editButton) };
+      btn.parentElement.appendChild(editButton); // Re-add edit button
+    }
+
+    function editAllergy(btn) {
+      const inputs = btn.parentElement.querySelectorAll('input, select, textarea');
+      inputs.forEach(input => {
+        input.removeAttribute('readonly');
+        input.classList.remove('read-only');
+      });
+      btn.innerText = 'Save'; // Change edit button to save
+      btn.onclick = function() { saveAllergy(btn) }; // Change edit to save functionality
+    }
+
+    function removeAllergy(btn) {
+      btn.parentElement.remove();
+    }
+
+    // Search Functionality for Allergies
+    document.getElementById('searchAllergies').addEventListener('input', function() {
+      const searchTerm = this.value.toLowerCase();
+      const allergies = document.querySelectorAll('#allergy-container .info-block');
+
+      allergies.forEach(allergy => {
+        const severity = allergy.querySelector('select').value.toLowerCase();
+        allergy.style.display = severity.includes(searchTerm) ? 'block' : 'none';
+      });
+    });
+
+    // Medical Records Functionality
+    function addMedicalRecord() {
+            const container = document.getElementById('medical-record-container');
+            const newRecord = document.createElement('div');
+            newRecord.className = 'info-block';
+
+            newRecord.innerHTML = `
+                <label>Diagnosis:</label>
+                <input type="text">
+                <label>Attending Doctor:</label>
+                <input type="text">
+                <label>Date:</label>
+                <input type="date">
+                <label>Description:</label>
+                <textarea rows="2"></textarea>
+                <label>Case Sheet (Upload PDF/Image):</label>
+                <input type="file" accept=".pdf, .jpg, .jpeg, .png" onchange="previewFile(this)">
+                <div class="file-preview"></div>
+                <button class="save-btn" onclick="saveMedicalRecord(this)">Save</button>
+                <button onclick="removeMedicalRecord(this)">Remove</button>
+                <div class="medical-test-container"></div>
+                <button class="add-btn" onclick="addMedicalTest(this)">Add Medical Test</button>
+            `;
+            container.appendChild(newRecord);
+        }
+
+        function previewFile(input) {
+            const file = input.files[0];
+            const previewContainer = input.nextElementSibling;
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    // Clear previous preview
+                    previewContainer.innerHTML = '';
+
+                    if (file.type === 'application/pdf') {
+                        const link = document.createElement('a');
+                        link.href = e.target.result;
+                        link.textContent = 'View PDF';
+                        link.target = '_blank';
+                        link.className = 'pdf-preview';
+                        previewContainer.appendChild(link);
+                    } else if (file.type.startsWith('image/')) {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.className = 'preview';
+                        previewContainer.appendChild(img);
+                    } else {
+                        previewContainer.textContent = 'Unsupported file type';
+                    }
+                };
+
+                reader.readAsDataURL(file);
+            }
+        }
+
+    function saveMedicalRecord(btn) {
+      const inputs = btn.parentElement.querySelectorAll('input, textarea');
+      inputs.forEach(input => {
+        input.setAttribute('readonly', true);
+        input.classList.add('read-only');
+      });
+     
+      btn.remove(); // Remove save button
+      // Add edit button back after saving
+      const editButton = document.createElement('button');
+      editButton.innerText = 'Edit';
+      editButton.className = 'edit-btn';
+      editButton.onclick = function() { editMedicalRecord(editButton) };
+      btn.parentElement.appendChild(editButton); // Re-add edit button
+    }
+
+    function editMedicalRecord(btn) {
+      const inputs = btn.parentElement.querySelectorAll('input, textarea');
+      inputs.forEach(input => {
+        input.removeAttribute('readonly');
+        input.classList.remove('read-only');
+      });
+      btn.innerText = 'Save'; // Change edit button to save
+      btn.onclick = function() { saveMedicalRecord(btn) }; // Change edit to save functionality
+    }
+
+    function removeMedicalRecord(btn) {
+      btn.parentElement.remove();
+    }
+
+    function addMedicalTest(btn) {
+            const container = btn.previousElementSibling;
+            const newTest = document.createElement('div');
+            newTest.className = 'info-block';
+
+            newTest.innerHTML = `
+                <label>Medical Test:</label>
+                <input type="text">
+                <label>Test Report (Upload PDF/Image):</label>
+                <input type="file" accept=".pdf, .jpg, .jpeg, .png" onchange="previewTestFile(this)">
+                <div class="file-preview"></div>
+                <button class="save-btn" onclick="saveMedicalTest(this)">Save</button>
+                <button onclick="removeMedicalTest(this)">Remove</button>
+            `;
+            container.appendChild(newTest);
+        }
+
+        function previewTestFile(input) {
+            const file = input.files[0];
+            const previewContainer = input.nextElementSibling;
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    // Clear previous preview
+                    previewContainer.innerHTML = '';
+
+                    if (file.type === 'application/pdf') {
+                        const link = document.createElement('a');
+                        link.href = e.target.result;
+                        link.textContent = 'View PDF';
+                        link.target = '_blank';
+                        link.className = 'pdf-preview';
+                        previewContainer.appendChild(link);
+                    } else if (file.type.startsWith('image/')) {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.className = 'preview';
+                        previewContainer.appendChild(img);
+                    } else {
+                        previewContainer.textContent = 'Unsupported file type';
+                    }
+                };
+
+                reader.readAsDataURL(file);
+            }
+        }
+
+    function saveMedicalTest(btn) {
+      const inputs = btn.parentElement.querySelectorAll('input');
+      inputs.forEach(input => {
+        input.setAttribute('readonly', true);
+        input.classList.add('read-only');
+      });
+      btn.remove(); // Remove save button
+      // Add edit button back after saving
+      const editButton = document.createElement('button');
+      editButton.innerText = 'Edit';
+      editButton.className = 'edit-btn';
+      editButton.onclick = function() { editMedicalTest(editButton) };
+      btn.parentElement.appendChild(editButton); // Re-add edit button
+    }
+
+    function editMedicalTest(btn) {
+      const inputs = btn.parentElement.querySelectorAll('input');
+      inputs.forEach(input => {
+        input.removeAttribute('readonly');
+        input.classList.remove('read-only');
+      });
+      btn.innerText = 'Save'; // Change edit button to save
+      btn.onclick = function() { saveMedicalTest(btn) }; // Change edit to save functionality
+    }
+
+    function removeMedicalTest(btn) {
+      btn.parentElement.remove();
+    }
+
+    // Prescription Functionality
+    function addPrescription() {
+            const container = document.getElementById('prescription-container');
+            const newPrescription = document.createElement('div');
+            newPrescription.className = 'info-block';
+
+            newPrescription.innerHTML = `
+                <label>Diagnosis:</label>
+                <input type="text">
+                <label>Date:</label>
+                <input type="date">
+                <label>Prescribed By:</label>
+                <input type="text">
+                <label>Medicines:</label>
+                <textarea rows="2"></textarea>
+                <label>Quantity:</label>
+                <input type="text">
+                <label>Prescription (Upload PDF/Image):</label>
+                <input type="file" accept=".pdf, .jpg, .jpeg, .png" onchange="previewPrescriptionFile(this)">
+                <div class="file-preview"></div>
+                <button class="save-btn" onclick="savePrescription(this)">Save</button>
+                <button onclick="removePrescription(this)">Remove</button>
+            `;
+            container.appendChild(newPrescription);
+        }
+
+        function previewPrescriptionFile(input) {
+            const file = input.files[0];
+            const previewContainer = input.nextElementSibling;
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    // Clear previous preview
+                    previewContainer.innerHTML = '';
+
+                    if (file.type === 'application/pdf') {
+                        const link = document.createElement('a');
+                        link.href = e.target.result;
+                        link.textContent = 'View PDF';
+                        link.target = '_blank';
+                        link.className = 'pdf-preview';
+                        previewContainer.appendChild(link);
+                    } else if (file.type.startsWith('image/')) {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.className = 'preview';
+                        previewContainer.appendChild(img);
+                    } else {
+                        previewContainer.textContent = 'Unsupported file type';
+                    }
+                };
+
+                reader.readAsDataURL(file);
+            }
+        }
+
+    function savePrescription(btn) {
+      const inputs = btn.parentElement.querySelectorAll('input, textarea');
+      inputs.forEach(input => {
+        input.setAttribute('readonly', true);
+        input.classList.add('read-only');
+      });
+  // Remove edit button
+      btn.remove(); // Remove save button
+      // Add edit button back after saving
+      const editButton = document.createElement('button');
+      editButton.innerText = 'Edit';
+      editButton.className = 'edit-btn';
+      editButton.onclick = function() { editPrescription(editButton) };
+      btn.parentElement.appendChild(editButton); // Re-add edit button
+    }
+
+    function editPrescription(btn) {
+      const inputs = btn.parentElement.querySelectorAll('input, textarea');
+      inputs.forEach(input => {
+        input.removeAttribute('readonly');
+        input.classList.remove('read-only');
+      });
+      btn.innerText = 'Save'; // Change edit button to save
+      btn.onclick = function() { savePrescription(btn) }; // Change edit to save functionality
+    }
+
+    function removePrescription(btn) {
+      btn.parentElement.remove();
+    }
+    
+
+
+
+    const editProfileBtn = document.getElementById('edit-profile-btn');
+    const editProfileForm = document.getElementById('edit-profile-form');
+    const saveProfileBtn = document.getElementById('save-profile-btn');
+    const profilePhoto = document.getElementById('profile-photo');
+
+    const profileName = document.getElementById('profile-name');
+    const profileUsername = document.getElementById('profile-username');
+    const profileDOB = document.getElementById('profile-dob');
+    const profileGender = document.getElementById('profile-gender');
+    const profileBlood = document.getElementById('profile-blood');
+    const profileMobile = document.getElementById('profile-mobile');
+    const profileAddress = document.getElementById('profile-address');
+    const profileAadhar = document.getElementById('profile-aadhar');
+    const profileInsurance = document.getElementById('profile-insurance');
+    const profileGuardian = document.getElementById('profile-guardian');
+    const profileGMobile = document.getElementById('profile-Gmobile');
+    const profileEmergency = document.getElementById('profile-emergency');
+    // Show Edit Profile Form
+    editProfileBtn.addEventListener('click', () => {
+      editProfileForm.style.display = 'block';
+      document.getElementById('profile').scrollIntoView();
+    });
+    // Save Profile Changes
+    saveProfileBtn.addEventListener('click', () => {
+      const editedPhoto = document.getElementById('edit-photo').files[0];
+      const editedName = document.getElementById('edit-name').value;
+      const editedUsername = document.getElementById('edit-username').value;
+      const editedDOB = document.getElementById('edit-dob').value;
+      const editedGender = document.getElementById('edit-gender').value;
+      const editedBlood = document.getElementById('edit-blood').value;
+      const editedMobile = document.getElementById('edit-mobile').value;
+      const editedAddress = document.getElementById('edit-address').value;
+      const editedAadhar = document.getElementById('edit-aadhar').value;
+      const editedInsurance = document.getElementById('edit-Insurance').value;
+      const editedGuardian = document.getElementById('edit-guardian').value;
+      const editedGMobile = document.getElementById('edit-Gmobile').value;
+      const editedEmergency = document.getElementById('edit-emergency').value;
+
+      // Update profile details
+      if (editedPhoto) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          profilePhoto.src = e.target.result;
+        };
+        reader.readAsDataURL(editedPhoto);
+      }
+
+      profileName.textContent = editedName;
+      profileUsername.textContent = editedUsername;
+      profileDOB.textContent = editedDOB;
+      profileGender.textContent = editedGender;
+      profileBlood.textContent = editedBlood;
+      profileMobile.textContent = editedMobile;
+      profileAddress.textContent = editedAddress;
+      profileAadhar.textContent = editedAadhar;
+      profileInsurance.textContent = editedInsurance;
+      profileGuardian.textContent = editedGuardian;
+      profileGMobile.textContent = editedGMobile;
+      profileEmergency.textContent = editedEmergency;
+
+      // Hide edit form
+      editProfileForm.style.display = 'none';
+    });
+
+  </script>
+
+</body>
+</html>

@@ -131,7 +131,7 @@ cp -r /Users/ameypatil/Desktop/HealthSync /usr/local/tomcat/webapps/newhealth
 
 Meet the development team driving the HealthSync platform:
 
-*   **Amey Patil** — Core Architecture, Routing and Git Deployments
-*   **Anand Patel** — Database Schema & Servlet Controllers Integration
-*   **Atharva Rajput** — Front-End Dashboards & Interactive Leaflet Geolocation UI
-*   **Shrey Rane** — EMT Camera QR Code System & File Upload Modals
+*   **Amey Patil**
+*   **Anand Patel** 
+*   **Atharva Rajput** 
+*   **Shrey Rane** 

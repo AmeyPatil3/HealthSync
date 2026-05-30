@@ -1,5 +1,7 @@
 # HealthSync 🏥 
 
+**Live Deployment:** [https://healthsync-duld.onrender.com/healthsync/index.jsp](https://healthsync-duld.onrender.com/healthsync/index.jsp)
+
 HealthSync is a premium, high-fidelity Java EE (JSP/Servlet) based Personal Health Record (PHR) and emergency clinical system. It provides a secure, cohesive platform for patients to manage their profiles, vitals, medical records, and prescriptions while equipping doctors with advanced diagnostic tools, patient search indexers, and an integrated EMT camera QR code scanner.
 
 ---

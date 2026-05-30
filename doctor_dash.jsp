@@ -598,7 +598,15 @@
             
             // If scanner decoded a direct search link, redirect browser directly to instantly load patient
             if (decodedText.includes("doctor_dash.jsp?searchQuery=")) {
-                window.location.href = decodedText;
+                // Extract searchQuery parameter from decoded text to avoid path mismatch (e.g. /newhealth/ vs /healthsync/)
+                const match = decodedText.match(/searchQuery=([^&]+)/);
+                if (match && match[1]) {
+                    const patientId = match[1];
+                    const contextPath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
+                    window.location.href = contextPath + "/doctor_dash.jsp?searchQuery=" + encodeURIComponent(patientId);
+                } else {
+                    window.location.href = decodedText;
+                }
             } else {
                 // If it is a raw 12-digit patient ID or Aadhaar, set input field and auto-submit search
                 const searchInput = document.getElementById('search-input');

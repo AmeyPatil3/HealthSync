@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  # MySQL Database Service
+  db:
+    image: mysql:8.0
+    container_name: healthsync_db
+    restart: always
+    environment:
+      MYSQL_DATABASE: healthsync
+      MYSQL_ROOT_PASSWORD: @Amey2005
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      # Automatically initialize database using the schema.sql on first startup
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+
+  # Tomcat Application Service
+  web:
+    build: .
+    container_name: healthsync_web
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_NAME=healthsync
+      - DB_USER=root
+      - DB_PASSWORD=@Amey2005
+
+volumes:
+  mysql_data:

@@ -50,7 +50,14 @@ public class SavePrescriptionServlet extends HttpServlet {
 
         try {
             Class.forName(DRIVER);
-            conn = DriverManager.getConnection(URL, USER, PASSWORD);
+            // Establish a connection using environment variables (with local fallbacks)
+            String dbHost = System.getenv("DB_HOST") != null ? System.getenv("DB_HOST") : "localhost";
+            String dbPort = System.getenv("DB_PORT") != null ? System.getenv("DB_PORT") : "3306";
+            String dbName = System.getenv("DB_NAME") != null ? System.getenv("DB_NAME") : "healthsync";
+            String dbUser = System.getenv("DB_USER") != null ? System.getenv("DB_USER") : USER;
+            String dbPass = System.getenv("DB_PASSWORD") != null ? System.getenv("DB_PASSWORD") : PASSWORD;
+            String resolvedUrl = "jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName;
+            conn = DriverManager.getConnection(resolvedUrl, dbUser, dbPass);
 
             String query = "INSERT INTO Prescriptions (user_id, diagnosis, prescribed_date, prescribed_by, medicines, quantity, prescription_file, file_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             ps = conn.prepareStatement(query);

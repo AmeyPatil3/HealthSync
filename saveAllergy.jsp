@@ -2,9 +2,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
-    String url = "jdbc:mysql://localhost:3306/healthsync";
-    String dbUser = "root";
-    String dbPass = "@Amey2005";
+    String dbHost = System.getenv("DB_HOST") != null ? System.getenv("DB_HOST") : "localhost";
+    String dbPort = System.getenv("DB_PORT") != null ? System.getenv("DB_PORT") : "3306";
+    String dbName = System.getenv("DB_NAME") != null ? System.getenv("DB_NAME") : "healthsync";
+    String dbUser = System.getenv("DB_USER") != null ? System.getenv("DB_USER") : "root";
+    String dbPass = System.getenv("DB_PASSWORD") != null ? System.getenv("DB_PASSWORD") : "@Amey2005";
+    String url = "jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName;
     Connection conn = null;
     PreparedStatement pstmt = null;
 

@@ -55,7 +55,13 @@
     String photoBase64 = null;
 
     try {
-        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthsync", "root", "@Amey2005");
+        String dbHost = System.getenv("DB_HOST") != null ? System.getenv("DB_HOST") : "localhost";
+        String dbPort = System.getenv("DB_PORT") != null ? System.getenv("DB_PORT") : "3306";
+        String dbName = System.getenv("DB_NAME") != null ? System.getenv("DB_NAME") : "healthsync";
+        String dbUser = System.getenv("DB_USER") != null ? System.getenv("DB_USER") : "root";
+        String dbPass = System.getenv("DB_PASSWORD") != null ? System.getenv("DB_PASSWORD") : "@Amey2005";
+        String resolvedUrl = "jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName;
+        con = DriverManager.getConnection(resolvedUrl, dbUser, dbPass);
         
         // Fetch Patient Profile details
         String query = "SELECT * FROM Users WHERE username = ?";

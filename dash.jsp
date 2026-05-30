@@ -701,8 +701,9 @@
     window.addEventListener('load', function() {
         const qrContainer = document.getElementById('qrcode-render');
         if (qrContainer) {
-            // Dynamically build lookup URL resolving browser host (domain and port)
-            const searchUrl = window.location.protocol + "//" + window.location.host + "/newhealth/doctor_dash.jsp?searchQuery=<%= username %>";
+            // Dynamically extract context path from current URL pathname (supporting any context or root path)
+            const contextPath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
+            const searchUrl = window.location.protocol + "//" + window.location.host + contextPath + "/doctor_dash.jsp?searchQuery=<%= username %>";
             
             new QRCode(qrContainer, {
                 text: searchUrl,

@@ -95,7 +95,7 @@ To initialize tables, keys, and test data inside the new cloud MySQL service:
 1. Once the web service deploy status turns **Live**, look at the top left of the service dashboard for your custom sub-domain URL (e.g. `https://healthsync-web.onrender.com`).
 2. Point your web browser to the context path of your deployed context:
    ```text
-   https://YOUR_SUBDOMAIN.onrender.com/newhealth/index.jsp
+   https://YOUR_SUBDOMAIN.onrender.com/healthsync/index.jsp
    ```
 3. **Success!** Your Personal Health Record system is now fully live on the internet! 
 

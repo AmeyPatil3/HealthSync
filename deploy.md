@@ -64,7 +64,7 @@ Scroll down, click **Advanced**, and add your Clever Cloud MySQL database connec
 3. Once the build log says **Live**, you will find your public URL at the top left of the dashboard (e.g. `https://healthsync-web.onrender.com`).
 4. Point your browser to your deployed path:
    ```text
-   https://YOUR_SUBDOMAIN.onrender.com/newhealth/index.jsp
+   https://YOUR_SUBDOMAIN.onrender.com/healthsync/index.jsp
    ```
 
 ---

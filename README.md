@@ -22,8 +22,7 @@
 
 ## ✨ Primary Core Features
 
-### 🩺 1. Comprehensive Patient Portal & Vitals Tracking
-* **Vital Indicators:** Monitor clinical stats including Blood Pressure, Heart Rate, SpO2, Temperature, and Weight inside responsive charts.
+### 🩺 1. Comprehensive Patient Portal & Tracking
 * **Allergen Registry:** Custom tagging modules for drug, food, and environmental allergens with color-coded severity levels.
 * **Secure Profile Management:** Dynamic avatar image uploads and structured address properties (Street, City, State, Zip) with safety fallbacks preventing unpolished `null` displays.
 

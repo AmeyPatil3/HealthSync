@@ -1,5 +1,4 @@
 <div align="center">
-  <img width="120px" height="120px" alt="HealthSync Logo" src="https://img.icons8.com/color/120/hospital.png" />
   <h1>🏥 HealthSync</h1>
   <h3>Unified Personal Health Record (PHR) & Emergency Clinical System</h3>
   <p><i>A premium, high-fidelity, and role-based Java EE platform designed for patient health empowerment, emergency clinical lookups, and dynamic QR medical passport scanning.</i></p>
